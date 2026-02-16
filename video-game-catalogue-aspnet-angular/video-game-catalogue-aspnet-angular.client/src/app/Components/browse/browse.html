@@ -3,22 +3,22 @@
   <p><a routerLink="/create">Create New Game</a></p>
 
   <section class="search">
-    <input placeholder="Search title or description" [(ngModel)]="searchTextValue" />
-    <select [(ngModel)]="searchGenreValue">
+    <input class="form-control" placeholder="Search title or description" [(ngModel)]="searchTextValue" />
+    <select class="form-select" [(ngModel)]="searchGenreValue">
       <option [ngValue]="null">All Genres</option>
       <option *ngFor="let genre of filters()?.genres" [value]="genre">{{ genre }}</option>
     </select>
-    <select [(ngModel)]="searchPublisherValue">
+    <select class="form-select" [(ngModel)]="searchPublisherValue">
       <option [ngValue]="null">All Publishers</option>
       <option *ngFor="let publisher of filters()?.publishers" [value]="publisher">{{ publisher }}</option>
     </select>
-    <button (click)="doSearch()">Search</button>
-    <button (click)="clearSearch()">Clear</button>
+    <button class="btn btn-primary" (click)="doSearch()">Search</button>
+    <button class="btn btn-secondary" (click)="clearSearch()">Clear</button>
   </section>
 
   <p *ngIf="!games()">Loading...</p>
 
-  <table *ngIf="games()">
+  <table class="table table-striped table-hover" *ngIf="games()">
     <thead>
       <tr>
         <th>Title</th>
@@ -34,7 +34,7 @@
         <td>{{ game.genre }}</td>
         <td>{{ game.publisher }}</td>
         <td>{{ game.year }}</td>
-        <td><button (click)="goToEdit(game.id)">Edit</button></td>
+        <td><button class="btn btn-sm btn-outline-primary" (click)="goToEdit(game.id)">Edit</button></td>
       </tr>
     </tbody>
   </table>
