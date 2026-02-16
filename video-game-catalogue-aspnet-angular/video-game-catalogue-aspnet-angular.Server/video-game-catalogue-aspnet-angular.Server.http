@@ -1,0 +1,56 @@
+@video_game_catalogue_aspnet_angular.Server_HostAddress = http://localhost:5264
+
+### Games API
+
+# Get all games
+GET {{video_game_catalogue_aspnet_angular.Server_HostAddress}}/api/games
+Accept: application/json
+
+###
+
+# Get a single game by id
+GET {{video_game_catalogue_aspnet_angular.Server_HostAddress}}/api/games/1
+Accept: application/json
+
+###
+
+# Create a new game
+POST {{video_game_catalogue_aspnet_angular.Server_HostAddress}}/api/games
+Content-Type: application/json
+Accept: application/json
+
+{
+  "Id": 0,
+  "Title": "New Game",
+  "Description": "A brand new game",
+  "Genre": "Adventure",
+  "Publisher": "Studio",
+  "year": 2025,
+  "price": 24.99
+}
+
+###
+
+# Update an existing game (id in URL must match payload)
+PUT {{video_game_catalogue_aspnet_angular.Server_HostAddress}}/api/games/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "Id": 1,
+  "Title": "Updated Game Title",
+  "Description": "Updated description",
+  "Genre": "Action",
+  "Publisher": "Studio",
+  "year": 2024,
+  "price": 19.99
+}
+
+###
+
+# Delete a game
+DELETE {{video_game_catalogue_aspnet_angular.Server_HostAddress}}/api/games/1
+Accept: application/json
+
+###
+

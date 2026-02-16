@@ -1,0 +1,25 @@
+<h1 id="tableLabel">Games</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!games"><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
+
+<table *ngIf="games">
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>Temp. (C)</th>
+      <th>Temp. (F)</th>
+      <th>Summary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let game of games">
+      <td>{{ game.title }}</td>
+      <td>{{ game.genre }}</td>
+      <td>{{ game.publisher }}</td>
+      <td>{{ game.year }}</td>
+    </tr>
+  </tbody>
+</table>
+

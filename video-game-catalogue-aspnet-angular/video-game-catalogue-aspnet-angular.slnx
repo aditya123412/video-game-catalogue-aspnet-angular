@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="video-game-catalogue-aspnet-angular.client/video-game-catalogue-aspnet-angular.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="video-game-catalogue-aspnet-angular.Server/video-game-catalogue-aspnet-angular.Server.csproj" />
+</Solution>
