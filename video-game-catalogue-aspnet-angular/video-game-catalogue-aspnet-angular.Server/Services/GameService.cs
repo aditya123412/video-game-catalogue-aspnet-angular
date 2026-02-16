@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using video_game_catalogue_aspnet_angular.Server.Data;
 using video_game_catalogue_aspnet_angular.Server.Data.DTO;
+using video_game_catalogue_aspnet_angular.Server.Data;
+using System;
 
 namespace video_game_catalogue_aspnet_angular.Server.Services
 {
@@ -55,6 +57,37 @@ namespace video_game_catalogue_aspnet_angular.Server.Services
             _db.Games.Remove(existing);
             await _db.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<List<Game>> SearchAsync(string? q = null, string? genre = null, string? publisher = null)
+        {
+            var query = _db.Games.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(q))
+            {
+                var t = q.Trim();
+                query = query.Where(g => g.Title.Contains(t) || (g.Description != null && g.Description.Contains(t)));
+            }
+            if (!string.IsNullOrWhiteSpace(genre))
+            {
+                query = query.Where(g => g.Genre == genre);
+            }
+            if (!string.IsNullOrWhiteSpace(publisher))
+            {
+                query = query.Where(g => g.Publisher == publisher);
+            }
+
+            return await query.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<video_game_catalogue_aspnet_angular.Server.Data.FiltersDto> GetFiltersAsync()
+        {
+            var genres = await _db.Games.Select(g => g.Genre).Distinct().Where(s => s != null).ToListAsync();
+            var publishers = await _db.Games.Select(g => g.Publisher).Distinct().Where(s => s != null).ToListAsync();
+            return new video_game_catalogue_aspnet_angular.Server.Data.FiltersDto
+            {
+                Genres = genres!,
+                Publishers = publishers!
+            };
         }
     }
 }

@@ -4,11 +4,13 @@ import { Browse } from './Components/browse/browse';
 import { Edit } from './Components/edit/edit';
 
 const routes: Routes = [
-  // Browse is the default and also accepts an optional id parameter
+  // Browse is the default
   { path: '', component: Browse },
-  { path: ':id', component: Browse },
-  // Edit page requires an id
+  // Edit/create routes must be registered before the ':id' route so they are not captured as an id
+  { path: 'create', component: Edit },
   { path: 'edit/:id', component: Edit },
+  // Browse with optional id (kept after edit so that 'edit' isn't treated as an id)
+  { path: ':id', component: Browse },
   // Fallback to browse
   { path: '**', redirectTo: '' }
 ];

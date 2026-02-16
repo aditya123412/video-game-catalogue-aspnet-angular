@@ -22,6 +22,18 @@ export class GameService {
     return this.http.get<Game[]>(this.base);
   }
 
+  search(q?: string, genre?: string, publisher?: string): Observable<Game[]> {
+    const params: any = {};
+    if (q) params.q = q;
+    if (genre) params.genre = genre;
+    if (publisher) params.publisher = publisher;
+    return this.http.get<Game[]>(`${this.base}/search`, { params });
+  }
+
+  getFilters(): Observable<{ genres: string[]; publishers: string[] }> {
+    return this.http.get<{ genres: string[]; publishers: string[] }>(`${this.base}/filters`);
+  }
+
   getById(id: number): Observable<Game> {
     return this.http.get<Game>(`${this.base}/${id}`);
   }

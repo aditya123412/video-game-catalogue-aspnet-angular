@@ -25,6 +25,21 @@ namespace video_game_catalogue_aspnet_angular.Server.Controllers
             return Ok(list);
         }
 
+        // Search endpoint: supports q (text), genre, publisher
+        [HttpGet("search", Name = "SearchGames")]
+        public async Task<ActionResult<IEnumerable<Game>>> Search([FromQuery] string? q, [FromQuery] string? genre, [FromQuery] string? publisher)
+        {
+            var list = await _svc.SearchAsync(q, genre, publisher);
+            return Ok(list);
+        }
+
+        [HttpGet("filters", Name = "GetFilters")]
+        public async Task<ActionResult<video_game_catalogue_aspnet_angular.Server.Data.FiltersDto>> GetFilters()
+        {
+            var filters = await _svc.GetFiltersAsync();
+            return Ok(filters);
+        }
+
         [HttpGet("{id}", Name = "GetGameById")]
         public async Task<ActionResult<Game>> GetGameById(int id)
         {

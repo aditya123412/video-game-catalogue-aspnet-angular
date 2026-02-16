@@ -11,5 +11,7 @@ namespace video_game_catalogue_aspnet_angular.Server.Services
         Task<Game> CreateAsync(Game game);
         Task<bool> UpdateAsync(Game game);
         Task<bool> DeleteAsync(int id);
+        Task<List<Game>> SearchAsync(string? q = null, string? genre = null, string? publisher = null);
+        Task<video_game_catalogue_aspnet_angular.Server.Data.FiltersDto> GetFiltersAsync();
     }
 }
