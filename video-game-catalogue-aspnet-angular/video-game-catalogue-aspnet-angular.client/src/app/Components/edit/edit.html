@@ -1,1 +1,35 @@
-<p>edit works!</p>
+<section *ngIf="form">
+  <h2>Edit Game</h2>
+
+  <form (ngSubmit)="save()">
+    <div>
+      <label>Title</label>
+      <input name="title" [(ngModel)]="form.title" />
+    </div>
+    <div>
+      <label>Description</label>
+      <textarea name="description" [(ngModel)]="form.description"></textarea>
+    </div>
+    <div>
+      <label>Genre</label>
+      <input name="genre" [(ngModel)]="form.genre" />
+    </div>
+    <div>
+      <label>Publisher</label>
+      <input name="publisher" [(ngModel)]="form.publisher" />
+    </div>
+    <div>
+      <label>Year</label>
+      <input type="number" name="year" [(ngModel)]="form.year" />
+    </div>
+    <div>
+      <label>Price</label>
+      <input type="number" step="0.01" name="price" [(ngModel)]="form.price" />
+    </div>
+
+    <button type="submit">Save</button>
+    <button type="button" (click)="cancel()">Cancel</button>
+  </form>
+</section>
+
+<div *ngIf="!model()">Loading...</div>

@@ -1,1 +1,36 @@
-<p>browse works!</p>
+<section>
+  <h2>Games</h2>
+
+  <p *ngIf="!games()">Loading...</p>
+
+  <table *ngIf="games()">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Genre</th>
+        <th>Publisher</th>
+        <th>Year</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let g of games()">
+        <td><a [routerLink]="['/', g.id]">{{ g.title }}</a></td>
+        <td>{{ g.genre }}</td>
+        <td>{{ g.publisher }}</td>
+        <td>{{ g.year }}</td>
+        <td><button (click)="goToEdit(g.id)">Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <section *ngIf="selected()">
+    <h3>Selected</h3>
+    <div><strong>{{ selected()?.title }}</strong></div>
+    <div>{{ selected()?.description }}</div>
+    <div>Genre: {{ selected()?.genre }}</div>
+    <div>Publisher: {{ selected()?.publisher ?? '' }}</div>
+    <div>Year: {{ selected()?.year ?? 0 }}</div>
+    <div>Price: {{ selected()?.price ?? '' }}</div>
+  </section>
+</section>

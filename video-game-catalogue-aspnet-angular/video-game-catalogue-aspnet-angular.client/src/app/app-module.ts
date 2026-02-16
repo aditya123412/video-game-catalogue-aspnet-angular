@@ -1,11 +1,12 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
-import { Browse } from './components/browse/browse';
-import { Edit } from './components/edit/edit';
+import { Browse } from './Components/browse/browse';
+import { Edit } from './Components/edit/edit';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { Edit } from './components/edit/edit';
     Edit
   ],
   imports: [
-    BrowserModule, HttpClientModule,
+    BrowserModule, HttpClientModule, FormsModule,
     AppRoutingModule
   ],
   providers: [

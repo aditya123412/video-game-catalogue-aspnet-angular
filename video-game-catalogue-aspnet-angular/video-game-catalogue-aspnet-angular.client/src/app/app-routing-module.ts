@@ -4,8 +4,13 @@ import { Browse } from './Components/browse/browse';
 import { Edit } from './Components/edit/edit';
 
 const routes: Routes = [
+  // Browse is the default and also accepts an optional id parameter
   { path: '', component: Browse },
-  { path: 'edit', component: Edit },
+  { path: ':id', component: Browse },
+  // Edit page requires an id
+  { path: 'edit/:id', component: Edit },
+  // Fallback to browse
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
