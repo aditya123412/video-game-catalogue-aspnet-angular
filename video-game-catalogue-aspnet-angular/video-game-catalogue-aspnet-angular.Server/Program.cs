@@ -18,13 +18,10 @@ builder.Services.AddDbContext<video_game_catalogue_aspnet_angular.Server.Data.Ap
     }
 });
 
-// Register game service
 builder.Services.AddScoped<video_game_catalogue_aspnet_angular.Server.Services.IGameService, video_game_catalogue_aspnet_angular.Server.Services.GameService>();
 
-// Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 // Configure CORS to allow the Angular dev server to call this API
 builder.Services.AddCors(options =>

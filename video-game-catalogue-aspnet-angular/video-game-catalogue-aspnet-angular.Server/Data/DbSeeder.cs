@@ -14,7 +14,7 @@ namespace video_game_catalogue_aspnet_angular.Server.Data
             if (db == null) throw new ArgumentNullException(nameof(db));
             if (logger == null) throw new ArgumentNullException(nameof(logger));
 
-            // Do not reseed if data already exists
+            // Keeping this as a separate check on top of the the Appsettings json toggle, although it is probably just redundant
             if (await Task.FromResult(db.Games.Any()))
             {
                 logger.LogInformation("Database already contains data; skipping seeding.");
@@ -22,18 +22,16 @@ namespace video_game_catalogue_aspnet_angular.Server.Data
             }
 
             var genres = new[] { "Arcade", "Platformer", "Racing", "Action", "Adventure" };
-            var publishers = new[] { "Taito", "Indie", "Speedy", "StudioX", "MegaCorp" };
+            var publishers = new[] { "Nintendo", "EA Games", "Rockstar", "UBISoft", "Activision" };
 
             var list = new List<Game>();
 
             var rnd = new Random();
             for (int i = 1; i <= count; i++)
             {
-                // Use modulo to ensure repeated genres/publishers so grouping/search shows results
                 var genre = genres[i % genres.Length];
                 var publisher = publishers[(i + 1) % publishers.Length];
 
-                // small randomness in title/year/price
                 var title = $"Game {i} - {genre}";
                 var year = 2000 + rnd.Next(0, 26);
                 var price = (float)Math.Round(rnd.NextDouble() * 50.0, 2);

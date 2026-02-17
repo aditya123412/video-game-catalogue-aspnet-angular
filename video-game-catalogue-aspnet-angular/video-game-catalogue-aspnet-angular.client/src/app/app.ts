@@ -17,5 +17,5 @@ export interface Game {
   styleUrl: './app.css'
 })
 export class App {
-  public readonly title = signal('video-game-catalogue-aspnet-angular.client');
+  public readonly title = signal('AJ\'s Video Games collection');
 }

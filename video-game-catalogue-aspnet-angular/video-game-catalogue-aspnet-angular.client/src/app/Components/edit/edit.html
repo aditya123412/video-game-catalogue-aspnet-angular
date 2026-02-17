@@ -1,38 +1,36 @@
-<section *ngIf="form">
-  <h2>{{ form?.id && form.id>0 ? 'Edit Game' : 'Create Game' }}</h2>
+<section>
+  <h2>{{ id() && id()>0 ? 'Edit Game' : 'Create Game' }}</h2>
 
   <form (ngSubmit)="save()" class="row g-3">
     <div class="col-12">
       <label class="form-label">Title</label>
-      <input class="form-control" name="title" [(ngModel)]="form.title" />
+      <input class="form-control" name="title" [(ngModel)]="title" />
     </div>
     <div class="col-12">
       <label class="form-label">Description</label>
-      <textarea class="form-control" name="description" [(ngModel)]="form.description"></textarea>
+      <textarea class="form-control" name="description" [(ngModel)]="description"></textarea>
     </div>
     <div class="col-md-4">
       <label class="form-label">Genre</label>
-      <input class="form-control" name="genre" [(ngModel)]="form.genre" />
+      <input class="form-control" name="genre" [(ngModel)]="genre" />
     </div>
     <div class="col-md-4">
       <label class="form-label">Publisher</label>
-      <input class="form-control" name="publisher" [(ngModel)]="form.publisher" />
+      <input class="form-control" name="publisher" [(ngModel)]="publisher" />
     </div>
     <div class="col-md-2">
       <label class="form-label">Year</label>
-      <input class="form-control" type="number" name="year" [(ngModel)]="form.year" />
+      <input class="form-control" type="number" name="year" [(ngModel)]="year" />
     </div>
     <div class="col-md-2">
       <label class="form-label">Price</label>
-      <input class="form-control" type="number" step="0.01" name="price" [(ngModel)]="form.price" />
+      <input class="form-control" type="number" step="0.01" name="price" [(ngModel)]="price" />
     </div>
 
     <div class="col-12">
-      <button class="btn btn-primary" type="submit">{{ form?.id && form.id>0 ? 'Update' : 'Create' }}</button>
+      <button class="btn btn-primary" type="submit">{{ id() && id()>0 ? 'Update' : 'Create' }}</button>
       <button class="btn btn-secondary ms-2" type="button" (click)="cancel()">Cancel</button>
-      <button *ngIf="form?.id && form.id>0" class="btn btn-danger ms-2" type="button" (click)="delete()">Delete</button>
+      <button *ngIf="id() && id()>0" class="btn btn-danger ms-2" type="button" (click)="delete()">Delete</button>
     </div>
   </form>
 </section>
-
-<div *ngIf="!form">Loading...</div>
