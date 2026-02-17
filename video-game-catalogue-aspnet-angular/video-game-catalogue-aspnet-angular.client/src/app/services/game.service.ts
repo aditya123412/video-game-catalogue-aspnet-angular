@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AppConfig } from './app-config.service';
 
 export interface Game {
   id: number;
@@ -14,17 +15,20 @@ export interface Game {
 
 @Injectable({ providedIn: 'root' })
 export class GameService {
-  private base = 'https://localhost:7087/api/games';
+  private base: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cfg: AppConfig) {
+    const baseRoot = cfg.apiBaseUrl.replace(/\/$/, '');
+    this.base = `${baseRoot}/games`;
+  }
 
   getAll(): Observable<Game[]> {
     return this.http.get<Game[]>(this.base);
   }
 
-  search(q?: string, genre?: string, publisher?: string): Observable<Game[]> {
+  search(query?: string, genre?: string, publisher?: string): Observable<Game[]> {
     const params: any = {};
-    if (q) params.q = q;
+    if (query) params.q = query;
     if (genre) params.genre = genre;
     if (publisher) params.publisher = publisher;
     return this.http.get<Game[]>(`${this.base}/search`, { params });
