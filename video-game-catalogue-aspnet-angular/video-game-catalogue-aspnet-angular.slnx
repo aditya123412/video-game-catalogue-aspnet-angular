@@ -3,5 +3,6 @@
     <Build />
     <Deploy />
   </Project>
+  <Project Path="video-game-catalogue-aspnet-angular.Server.Tests/video-game-catalogue-aspnet-angular.Server.Tests.csproj" />
   <Project Path="video-game-catalogue-aspnet-angular.Server/video-game-catalogue-aspnet-angular.Server.csproj" />
 </Solution>
